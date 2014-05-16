@@ -15,6 +15,14 @@
      :app [
      		(:lt.objs.style/set-skin "dark")
        	 	(:lt.plugins.photon/set-directories [:plugins "C:/developpement/workspace/php" "C:/PersoNew"])
+       	 	(:lt.objs.files/file.ignore-pattern "\\.phar")
+            	(:lt.objs.files/file-types [{:exts [:twig],
+                                        :mime "text/html",
+                                        :name "Twig",
+                                        :tags [:editor.html]},
+                                        {:exts [:Vagrantfile],
+                                        :mime "text/x-ruby",
+                                        :name "Vagrant"}])
       ]
 
      ;; The editor tag is applied to all editors
