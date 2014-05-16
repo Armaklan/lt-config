@@ -66,3 +66,10 @@
 			  }}
 
  }
+
+ :- {
+     :editor.keys.normal.emmet {
+                                "tab" [(:editor.codemirror.command "emmet.expand_abbreviation_with_tab")]
+                                }
+     }
+ }
