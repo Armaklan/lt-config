@@ -10,62 +10,63 @@
 ;; of all the commands you can execute, start typing a word related to the thing you
 ;; want to do in between the square brackets (e.g. type "editor").
 {:+ {:app {
-		   "ctrl-shift-up" [:tabs.move-new-tabset]
-		   "ctrl-shift-left" [:tabset.prev]
-		   "ctrl-shift-right" [:tabset.next]
-		   "ctrl-shift-down" [:tabset.close]
-		   "ctrl-shift-e" [:workspace.show]
-		   "ctrl-shift-c" [:toggle-console]
-		   "ctrl-shift-o" [:goto-line]
+           "ctrl-shift-up" [:tabs.move-new-tabset]
+           "ctrl-shift-left" [:tabset.prev]
+           "ctrl-shift-right" [:tabset.next]
+           "ctrl-shift-down" [:tabset.close]
+           "ctrl-shift-e" [:workspace.show]
+           "ctrl-shift-c" [:toggle-console]
+           "ctrl-shift-o" [:goto-line]
 
-		   ;; Ajout suppression de tabset
-		   "alt-+" [:tabset.new]
-		   "alt--" [:tabset.close]
+           ;; Ajout suppression de tabset
+           "alt-+" [:tabset.new]
+           "alt--" [:tabset.close]
 
-		   ;; Navigation dans les tabs
-		   "ctrl-home" [:tabs.prev]
-		   "ctrl-end" [:tabs.next]
+           ;; Navigation dans les tabs
+           "ctrl-home" [:tabs.prev]
+           "ctrl-end" [:tabs.next]
 
-		   ;; Navigation dans les tabset
-		   "alt-home" [:tabset.prev]
-		   "alt-end" [:tabset.next]
-	}
+           ;; Navigation dans les tabset
+           "alt-home" [:tabset.prev]
+           "alt-end" [:tabset.next]
+           }
 
      :editor {"alt-w" [:editor.watch.watch-selection]
               "alt-shift-w" [:editor.watch.unwatch]
 
-			  ;; Rebinding documentation
-			  "ctrl-shift-d" [:editor.doc.toggle]
+              ;; Rebinding documentation
+              "ctrl-shift-d" [:editor.doc.toggle]
 
-			  ;; Gestion des Zooms
-			  "ctrl-+" [:window.zoom-in]
-			  "ctrl--" [:window.zoom-out]
-			  "ctrl-/" [:window.zoom-reset]
+              ;; Gestion des Zooms
+              "ctrl-+" [:window.zoom-in]
+              "ctrl--" [:window.zoom-out]
+              "ctrl-/" [:window.zoom-reset]
 
-			  ;; Falicité d'édition
-			  "ctrl-down" [:paredit-plus.new-line-after-pair-close]
-			  "ctrl-l" [:editor.select-line]
-			  "alt-d" [:paredit-plus.delete-pair-contents]
-			  "ctrl-shift-f" [:smart-indent-selection]
+              ;; Falicité d'édition
+              "ctrl-down" [:paredit-plus.new-line-after-pair-close]
+              "ctrl-l" [:editor.select-line]
+              "alt-d" [:paredit-plus.delete-pair-contents]
+              "ctrl-shift-f" [:smart-indent-selection]
 
-			  ;; Comment line
-			  "ctrl-shift-/" [:toggle-comment-selection]
+              ;; Comment line
+              "ctrl-shift-/" [:toggle-comment-selection]
 
-			  ;; FIX Autoclose brackets on windows
+              ;; FIX Autoclose brackets on windows
               "ctrl-alt-4" [(:editor.open-pair "{")]
-			  "ctrl-alt-=" [(:editor.close-pair "}")]
-			  "ctrl-alt-5" [(:editor.open-pair "[")]
+              "ctrl-alt-=" [(:editor.close-pair "}")]
+              "ctrl-alt-5" [(:editor.open-pair "[")]
               "ctrl-alt-°" [(:editor.close-pair "]")]
 
+              "alt-p alt-a" [:photon.add-folder]
+              "alt-p alt-d" [:photon.remove-folder]
 
-			  "ctrl-p" [:snippet.by_token]
+              }
 
-			  "alt-p alt-a" [:photon.add-folder]
-			  "alt-p alt-d" [:photon.remove-folder]
 
-			  }}
 
- }
+
+
+     }
 
  :- {
      :editor.keys.normal.emmet {
