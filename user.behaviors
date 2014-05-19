@@ -15,23 +15,26 @@
      :app [
      		(:lt.objs.style/set-skin "dark")
        	 	(:lt.plugins.photon/set-directories [:plugins "C:/developpement/workspace/php" "C:/PersoNew"])
-       	 	(:lt.objs.files/file.ignore-pattern "\\.phar")
-            	(:lt.objs.files/file-types [{:exts [:twig],
+            (:lt.objs.files/file.ignore-pattern "\\.phar")
+            (:lt.objs.files/file-types [{:exts [:twig],
                                         :mime "text/html",
                                         :name "Twig",
-                                        :tags [:editor.html]},
+                                        :tags [:editor.html
+                                               :editor.twig]},
                                         {:exts [:Vagrantfile],
                                         :mime "text/x-ruby",
                                         :name "Vagrant"}])
       ]
 
      ;; The editor tag is applied to all editors
-     :editor [:lt.objs.editor/no-wrap
+     :editor [
+              :lt.objs.editor/no-wrap
 			  :lt.objs.editor/highlight-current-line
               (:lt.objs.style/set-theme "monokai")
               (:lt.objs.style/font-settings "Consolas" 12 1)
-              (:lt.objs.editor/tab-settings true 4 4)
-			  :lt.objs.editor/line-numbers]
+              (:lt.objs.editor/tab-settings false 4 4)
+			  :lt.objs.editor/line-numbers
+			  ]
 
 	 :lt.plugins.opener/settings [(:lt.plugins.opener/set-shell-command
        :terminal
@@ -40,7 +43,8 @@
 
      ;; Here we can add behaviors to just clojure editors
      :editor.clojure [(:lt.plugins.clojure/print-length 1000)]
-	 :editor.html [(:lt.objs.editor/tab-settings true 2 2)]
+	 :editor.html [(:lt.objs.editor/tab-settings false 2 2)]
+
 
 
 	 }
