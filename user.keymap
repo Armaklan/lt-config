@@ -35,7 +35,7 @@
               "alt-shift-w" [:editor.watch.unwatch]
 
               ;; Rebinding documentation
-              "ctrl-shift-d" [:editor.doc.toggle]
+              "alt-d" [:editor.doc.toggle]
 
               ;; Gestion des Zooms
               "ctrl-+" [:window.zoom-in]
@@ -45,8 +45,8 @@
               ;; Falicité d'édition
               "ctrl-down" [:paredit-plus.new-line-after-pair-close]
               "ctrl-l" [:editor.select-line]
-              "alt-d" [:paredit-plus.delete-pair-contents]
               "ctrl-shift-f" [:smart-indent-selection]
+              "ctrl-shift-d" [:editor.jump-to-definition-at-cursor]
 
               ;; Comment line
               "ctrl-shift-/" [:toggle-comment-selection]
@@ -57,8 +57,19 @@
               "ctrl-alt-5" [(:editor.open-pair "[")]
               "ctrl-alt-°" [(:editor.close-pair "]")]
 
+              ;; Photon project
               "alt-p alt-a" [:photon.add-folder]
               "alt-p alt-d" [:photon.remove-folder]
+
+              ;; Multicursor
+              "ctrl-n" [:editor.sublime.selectNextOccurrence]
+              "ctrl-b" [:editor.sublime.goToBracket]
+
+              ;; Rebind new file
+              "ctrl-shift-n" [:new-file]
+
+              ;;inspector
+              "ctrl-shift-i" [:dev-inspector]
 
               }
 
@@ -72,5 +83,9 @@
      :editor.keys.normal.emmet {
                                 "tab" [(:editor.codemirror.command "emmet.expand_abbreviation_with_tab")]
                                 }
+     :editor {
+              "ctrl-n" [:new-file]
+              "ctrl-shift-n" [:window.new]
+              }
      }
  }

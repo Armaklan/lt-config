@@ -13,9 +13,10 @@
      ;; The app tag is kind of like global scope. You assign behaviors that affect
      ;; all of Light Table here
      :app [
-     		(:lt.objs.style/set-skin "dark")
-       	 	(:lt.plugins.photon/set-directories [:plugins "C:/developpement/workspace/php" "C:/PersoNew"])
-            (:lt.objs.files/file.ignore-pattern "\\.phar|\\.git|\\.svn")
+     		    (:lt.objs.style/set-skin "dark")
+            (:lt.objs.style/font-settings "Consolas" "10" "1.1")
+       	 	  (:lt.plugins.photon/set-directories [:plugins "D:/Workspace" "D:/Application/APR.Exposition.Vente" "C:/Users/lionel.zuber/AppData/Local/LightTable/snippets"])
+            (:lt.objs.files/file.ignore-pattern "\\.phar|\\.git|\\.svn|\\.net|node_modules|bower_components|App_Data|App_Start|bin|dist|libs|obj|My Project|Service References")
             (:lt.objs.files/file-types [{:exts [:twig],
                                         :mime "text/html",
                                         :name "Twig",
@@ -26,15 +27,26 @@
                                         :name "Vagrant"}])
       ]
 
+     :tern.config [(:lt.plugins.tern/libs :ecma5)
+                   (:lt.plugins.tern/libs :jquery)
+                   (:lt.plugins.tern/libs :browser)
+                   (:lt.plugins.tern/plugin :angular true)
+                   (:lt.plugins.tern/plugin :doc_comment true)
+                   (:lt.plugins.tern/plugin :node true)]
+
      ;; The editor tag is applied to all editors
      :editor [
-              :lt.objs.editor/no-wrap
-			  :lt.objs.editor/highlight-current-line
-              (:lt.objs.style/set-theme "monokai")
-              (:lt.objs.style/font-settings "Consolas" 12 1)
-              (:lt.objs.editor/tab-settings false 4 4)
-			  :lt.objs.editor/line-numbers
+          :lt.objs.editor/no-wrap
+          :lt.objs.editor/highlight-current-line
+                (:lt.objs.style/set-theme "monokai")
+                (:lt.objs.editor/tab-settings false 2 2)
+          :lt.objs.editor/line-numbers
 			  ]
+
+     :editor.less [:lt.plugins.palette/enable]
+     :editor.javascript [:lt.plugins.jshint/on-save
+                         :lt.plugins.rainbow/rainbow-parens]
+
 
 	 :lt.plugins.opener/settings [(:lt.plugins.opener/set-shell-command
        :terminal
@@ -43,7 +55,7 @@
 
      ;; Here we can add behaviors to just clojure editors
      :editor.clojure [(:lt.plugins.clojure/print-length 1000)]
-	 :editor.html [(:lt.objs.editor/tab-settings false 2 2)]
+	   :editor.html [(:lt.objs.editor/tab-settings false 2 2)]
 
 
 
@@ -51,4 +63,8 @@
 
  ;; You can use the subtract key to remove behavior that may get added by
  ;; another diff
- :- {:app []}}
+ :- {:app [:lt.objs.menu/create-menu
+           :lt.objs.menu/set-menu
+           ]
+     :window [:lt.objs.menu/set-menu]
+     }}
