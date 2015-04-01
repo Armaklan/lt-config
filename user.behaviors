@@ -1,70 +1,86 @@
-;; User behaviors
-;; -----------------------------
-;; Behaviors are stored as a set of diffs that are merged together
-;; to create the final set of functionality that makes up Light Table. You can
-;; modify these diffs to either add or subtract functionality.
-;;
-;; Behaviors are added to tags, objects with those tags then automatically gain
-;; whatever logic the behavior imparts. To see a list of user-level behaviors,
-;; start typing a word related to the functionality you want in between the square
-;; brackets (e.g. "theme").
+[
+ [:app :-lt.objs.intro/show-intro]
 
-{:+ {
-     ;; The app tag is kind of like global scope. You assign behaviors that affect
-     ;; all of Light Table here
-     :app [
-     		    (:lt.objs.style/set-skin "dark")
-            (:lt.objs.style/font-settings "Consolas" "10" "1.1")
-       	 	  (:lt.plugins.photon/set-directories [:plugins "D:/Workspace" "D:/Application/APR.Exposition.Vente" "C:/Users/lionel.zuber/AppData/Local/LightTable/snippets"])
-            (:lt.objs.files/file.ignore-pattern "\\.phar|\\.git|\\.svn|\\.net|node_modules|bower_components|App_Data|App_Start|bin|dist|libs|obj|My Project|Service References")
-            (:lt.objs.files/file-types [{:exts [:twig],
-                                        :mime "text/html",
-                                        :name "Twig",
-                                        :tags [:editor.html
-                                               :editor.twig]},
-                                        {:exts [:Vagrantfile],
-                                        :mime "text/x-ruby",
-                                        :name "Vagrant"}])
-      ]
+ [:app :lt.objs.plugins/load-js "user_compiled.js"]
+ [:app :lt.objs.style/font-settings "Consolas" "10" "1.1"]
+ [:app :lt.plugins.photon/set-directories [:plugins
+                                           "D:/Workspace"
+                                           "D:/Application/APR.Exposition.Vente"
+                                           "D:/Workspace/indicateurs-financiers-web-git"
+                                           "C:/Users/lionel.zuber/AppData/Local/LightTable/snippets"]]
+ [:app :lt.objs.files/file.ignore-pattern "\\.phar|\\.git|\\.svn|node_modules|bower_components|build|App_Data|App_Start|bin|dist|libs|obj|My Project|Service References"]
+ [:app :lt.objs.files/file-types [
+                                  {:exts [:twig], :mime "text/html", :tags [:editor.html :editor.twig],:name "Twig"}
+                                  {:exts [:Vagrantfile], :mime "text/x-ruby", :name "Vagrant"}
+                                  {:exts [:Dockerfile], :mime "text/x-ruby", :name "Dockerfile"}]]
 
-     :tern.config [(:lt.plugins.tern/libs :ecma5)
-                   (:lt.plugins.tern/libs :jquery)
-                   (:lt.plugins.tern/libs :browser)
-                   (:lt.plugins.tern/plugin :angular true)
-                   (:lt.plugins.tern/plugin :doc_comment true)
-                   (:lt.plugins.tern/plugin :node true)]
+ [:app :-lt.objs.menu/create-menu]
+ [:app :-lt.objs.menu/set-menu]
+ [:window :-lt.objs.menu/set-menu]
 
-     ;; The editor tag is applied to all editors
-     :editor [
-          :lt.objs.editor/no-wrap
-          :lt.objs.editor/highlight-current-line
-                (:lt.objs.style/set-theme "monokai")
-                (:lt.objs.editor/tab-settings false 2 2)
-          :lt.objs.editor/line-numbers
-			  ]
+ [:app :lt.objs.style/set-skin "new-dark"]
+ [:editor :lt.objs.style/set-theme "monokai"]
 
-     :editor.less [:lt.plugins.palette/enable]
-     :editor.javascript [:lt.plugins.jshint/on-save
-                         :lt.plugins.rainbow/rainbow-parens]
+ [:app :lt.objs.console/set-console-limit 5000]
 
+ [:editor :lt.objs.editor/fold-gutter]
+ [:editor :lt.objs.editor/no-wrap]
+ [:editor :lt.objs.editor/highlight-current-line]
+ [:editor :lt.objs.editor/tab-settings false 2 2]
+ [:editor :lt.objs.editor/line-numbers]
 
-	 :lt.plugins.opener/settings [(:lt.plugins.opener/set-shell-command
-       :terminal
-       :windows
-       ["sh" "--login" "-a"])]
+ [:editor.less :lt.plugins.palette/enable]
 
-     ;; Here we can add behaviors to just clojure editors
-     :editor.clojure [(:lt.plugins.clojure/print-length 1000)]
-	   :editor.html [(:lt.objs.editor/tab-settings false 2 2)]
+ ;; Ternify Configuration
+ [:tern.config :-lt.plugins.tern/libs]
+ [:tern.config :lt.plugins.tern/libs :ecma5]
+ [:tern.config :lt.plugins.tern/libs :browser]
+ [:tern.config :lt.plugins.tern/plugin :angular true]
+ [:tern.config :lt.plugins.tern/plugin :doc_comment true]
+ [:tern.config :lt.plugins.tern/plugin :node true]
 
+ ;; JsHint configuration
+ [:editor.javascript :lt.plugins.jshint/on-save]
+ [:editor.javascript :lt.plugins.jshint/jshint-options {
+                                                        :predef ["angular",
+                                                                 "module",
+                                                                 "beforeEach",
+                                                                 "describe",
+                                                                 "moment",
+                                                                 "inject",
+                                                                 "it",
+                                                                 "expect"]
+                                                        :validthis true,
+                                                        :unused true,
+                                                        :undef true,
+                                                        :bitwise true,
+                                                        :camelcase true,
+                                                        :curly true,
+                                                        :forin true,
+                                                        :freeze true,
+                                                        :immed true,
+                                                        :newcap true,
+                                                        :noarg true,
+                                                        :noempty true,
+                                                        :strict true,
+                                                        :maxdepth 4,
+                                                        :maxstatements 25,
+                                                        :maxcomplexity 8
+                                                        :node true,
+                                                        :browser true,
+                                                        :devel true
+                                                        }]
 
+ ;; JsBeautify option
+ [:editor.javascript :lt.plugins.jsbeautify/jsbeautify-options {
+                                                               :indent_size 2
+                                                               :indent_level 0
+                                                               :preserve_newlines true
+                                                               :max_preserve_newlines 10}]
 
-	 }
-
- ;; You can use the subtract key to remove behavior that may get added by
- ;; another diff
- :- {:app [:lt.objs.menu/create-menu
-           :lt.objs.menu/set-menu
-           ]
-     :window [:lt.objs.menu/set-menu]
-     }}
+ [:editor.html :lt.plugins.jsbeautify/jsbeautify-options {
+                                                               :indent_size 2
+                                                               :indent_level 0
+                                                               :preserve_newlines true
+                                                               :max_preserve_newlines 10}]
+]

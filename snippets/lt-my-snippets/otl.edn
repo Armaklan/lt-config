@@ -1,0 +1,7 @@
+{:modes {:+ #{:editor.otl}}
+ :snippets [
+            {:name "Insert date"
+             :key "dd"
+             :snippet-file "otl/date.snip"
+             }
+            ]}

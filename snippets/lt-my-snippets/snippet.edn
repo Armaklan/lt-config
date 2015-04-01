@@ -1,0 +1,11 @@
+{:modes {:+ #{:editor.edn}}
+ :snippets [
+            {:name "Editor block"
+             :key "ed"
+             :snippet-file "snippet-ed/editor.snip"
+             }
+            {:name "New snippet"
+             :key "snip"
+             :snippet-file "snippet-ed/snippet.snip"
+            }
+            ]}

@@ -1,91 +1,81 @@
-;; User keymap
-;; -----------------------------
-;; Keymaps are stored as a set of diffs that are merged together to create
-;; the final set of keys. You can modify these diffs to either add or
-;; subtract bindings.
-;;
-;; Like behaviors, keys are bound by tag. When objects with those tags are active
-;; the key bindings are live. Keys can be bound to any number of Light Table commands,
-;; allowing you the flexibility to execute multiple operations together. To see a list
-;; of all the commands you can execute, start typing a word related to the thing you
-;; want to do in between the square brackets (e.g. type "editor").
-{:+ {:app {
-           "ctrl-shift-up" [:tabs.move-new-tabset]
-           "ctrl-shift-left" [:tabset.prev]
-           "ctrl-shift-right" [:tabset.next]
-           "ctrl-shift-down" [:tabset.close]
-           "ctrl-shift-e" [:workspace.show]
-           "ctrl-shift-c" [:toggle-console]
-           "ctrl-shift-o" [:goto-line]
+;; Your file has been converted to the new flat format.
+;; Conversion does not preserve comments or indentation.
+;; File is backed up at C:\Users\lionel.zuber\AppData\Local\LightTable\User\user.keymap.bak
+[
 
-           ;; Ajout suppression de tabset
-           "alt-+" [:tabset.new]
-           "alt--" [:tabset.close]
+ ;; Pair configuration(AZERTY)
+ [:editor.keys.normal "\"" (:editor.repeat-pair "\"")]
+ [:editor.keys.normal "(" (:editor.open-pair "(")]
+ [:editor.keys.normal ")" (:editor.close-pair ")")]
+ [:editor.keys.normal "ctrl-alt-4" (:editor.open-pair "{")]
+ [:editor.keys.normal "ctrl-alt-5" (:editor.open-pair "[")]
+ [:editor.keys.normal "ctrl-alt-[" (:editor.close-pair "]")]
+ [:editor.keys.normal "ctrl-alt-=" (:editor.close-pair "}")]
 
-           ;; Navigation dans les tabs
-           "ctrl-home" [:tabs.prev]
-           "ctrl-end" [:tabs.next]
+ ;; General Navigation and layout
+ [:app "ctrl-shift-o" :goto-line]
+ [:app "ctrl-shift-c" :toggle-console]
+ [:app "ctrl-shift-e" :workspace.show]
 
-           ;; Navigation dans les tabset
-           "alt-home" [:tabset.prev]
-           "alt-end" [:tabset.next]
-           }
+ ;; Editor global shortcut
+ [:app "f11" :window.fullscreen]
+ [:app "f12" :dev-inspector]
+ [:app "f5" :behaviors.reload]
+ [:app "f6" :user.svn-update]
+ [:editor "alt-ctrl-shift-n" :window.new]
 
-     :editor {"alt-w" [:editor.watch.watch-selection]
-              "alt-shift-w" [:editor.watch.unwatch]
+ ;; Tabset control via ctrl-t
+ [:app "ctrl-t +" :tabset.new]
+ [:app "ctrl-t down" :tabset.close]
+ [:app "ctrl-t -" :tabs.close-others]
+ [:app "ctrl-t tab" :tabset.next]
+ [:app "ctrl-t left" :tabs.move-next-tabset]
+ [:app "ctrl-t up" :tabs.move-new-tabset]
+ [:app "ctrl-t right" :tabs.move-prev-tabset]
 
-              ;; Rebinding documentation
-              "alt-d" [:editor.doc.toggle]
+ ;; Watch
+ [:editor "alt-shift-w" :editor.watch.unwatch]
+ [:editor "alt-w" :editor.watch.watch-selection]
 
-              ;; Gestion des Zooms
-              "ctrl-+" [:window.zoom-in]
-              "ctrl--" [:window.zoom-out]
-              "ctrl-/" [:window.zoom-reset]
+ ;; Zoom
+ [:editor "ctrl-+" :window.zoom-in]
+ [:editor "ctrl--" :window.zoom-out]
+ [:editor "ctrl-/" :window.zoom-reset]
 
-              ;; Falicité d'édition
-              "ctrl-down" [:paredit-plus.new-line-after-pair-close]
-              "ctrl-l" [:editor.select-line]
-              "ctrl-shift-f" [:smart-indent-selection]
-              "ctrl-shift-d" [:editor.jump-to-definition-at-cursor]
+ ;; Editor navigation and selection, like paredit features
+ [:editor "ctrl-l" :editor.select-line]
+ [:editor "f10" :editor.jump-to-definition-at-cursor]
+ [:editor "ctrl-shift-d" :editor.jump-to-definition-at-cursor]
+ [:editor "ctrl-down" :paredit-plus.new-line-after-pair-close]
+ [:editor "alt-s" :paredit.select.parent]
+ [:editor "alt-d" :editor.doc.toggle]
+ [:editor "ctrl-b" :editor.sublime.goToBracket]
+ [:editor "ctrl-shift-/" :toggle-comment-selection]
+ [:editor "ctrl-alt-," :paredit.grow.right]
+ [:editor "ctrl-alt-." :paredit.grow.left]
 
-              ;; Comment line
-              "ctrl-shift-/" [:toggle-comment-selection]
+ ;;Plugins configuration
+ [:editor "alt-l" :user.svn-lock-file]
+ [:editor "ctrl-shift-n" :new-file]
+ [:editor "alt-ctrl-n" :new-file]
+ [:editor "alt-p alt-a" :photon.add-folder]
+ [:editor "alt-p alt-d" :photon.remove-folder]
+ [:editor "ctrl-shift-l" :jsbeautify.beautify-file]
 
-              ;; FIX Autoclose brackets on windows
-              "ctrl-alt-4" [(:editor.open-pair "{")]
-              "ctrl-alt-=" [(:editor.close-pair "}")]
-              "ctrl-alt-5" [(:editor.open-pair "[")]
-              "ctrl-alt-°" [(:editor.close-pair "]")]
+ ;; Search on google
+ [:editor "alt-f g" :lt.plugins.googlesearch/google-word-under-cursor]
 
-              ;; Photon project
-              "alt-p alt-a" [:photon.add-folder]
-              "alt-p alt-d" [:photon.remove-folder]
+ ;; Multi-cursor config
+ [:editor "ctrl-n" :editor.sublime.selectNextOccurrence]
+ [:editor "ctrl-shift-up" :editor.sublime.selectLinesUpward]
+ [:editor "ctrl-shift-down" :editor.sublime.selectLinesDownward]
 
-              ;; Multicursor
-              "ctrl-n" [:editor.sublime.selectNextOccurrence]
-              "ctrl-b" [:editor.sublime.goToBracket]
+ ;; Can replace by editor.delete-line. Keep for example of multi commands
+ [:editor "ctrl-k" (:editor.line-start)
+                   (:editor.kill-line)
+                   (:editor.delete-char-left)]
 
-              ;; Rebind new file
-              "ctrl-shift-n" [:new-file]
-
-              ;;inspector
-              "ctrl-shift-i" [:dev-inspector]
-
-              }
-
-
-
-
-
-     }
-
- :- {
-     :editor.keys.normal.emmet {
-                                "tab" [(:editor.codemirror.command "emmet.expand_abbreviation_with_tab")]
-                                }
-     :editor {
-              "ctrl-n" [:new-file]
-              "ctrl-shift-n" [:window.new]
-              }
-     }
- }
+ [:app "ctrl-g ctrl-n" (:open-path "C:/Users/lionel.zuber/note.otl")]
+ ;; Delete emmet standard binding
+ [:editor.keys.normal.emmet "-tab" (:editor.codemirror.command "emmet.expand_abbreviation_with_tab")]
+]

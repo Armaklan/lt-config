@@ -1,0 +1,21 @@
+<div type="text" for="${1:localname}"
+  label="${7:label}"
+  form-input
+  field="mainForm.${1:localname}"
+  invalid="hasNotify(${4:notify})"
+  required="behaviours['${5:behavior}-required']">
+  <input type="text"
+    class="form-control"
+    name="${1:localname}"
+    maxlength="{{length.${1:localname}}}"
+    ng-pattern="pattern.${6:pattern}"
+    ng-model="${2:model}"
+    ng-focus="${3:errorName}=true"
+    ng-blur="${3:errorName}=false"
+    ng-required="behaviours['${5:behavior}-required']">
+  <div class="field-errors" ng-show="${3:errorName}" >
+    <span error text="required" show="mainForm.${1:localname}.$error.required"></span>
+    <span error text="pattern" show="mainForm.${1:localname}.$error.pattern"></span>
+  </div>
+</div>
+$0

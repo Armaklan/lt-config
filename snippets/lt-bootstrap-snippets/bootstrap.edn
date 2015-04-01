@@ -1,0 +1,37 @@
+{:modes {:+ #{:editor.html}}
+ :snippets [
+            {:name "Bootstrap : Col div"
+             :key "bs3-col"
+             :snippet-file "col.snip"
+             }
+            {:name "Bootstrap : Table"
+             :key "bs3-table"
+             :snippet-file "table.snip"
+             }
+            {:name "Bootstrap : Add JS and CSS cdn"
+             :key "bs3-cdn"
+             :snippet-file "cdn.snip"
+             }
+            {:name "Bootstrap : Panel"
+             :key "bs3-panel"
+             :snippet-file "panel.snip"
+             }
+            {:name "Bootstrap : Alert"
+             :key "bs3-alert"
+             :snippet-file "alert.snip"
+             }
+            {:name "Bootstrap : Breadcrumb"
+             :key "bs3-bread"
+             :snippet-file "breadcrumb.snip"
+             }
+            {:name "Bootstrap : Button"
+             :key "bs3-btn"
+             :snippet-file "btn.snip"
+             }
+            {:name "Bootstrap : Tabset"
+             :key "bs3-tabset"
+             :snippet-file "tabset.snip"
+             }
+
+
+            ]}

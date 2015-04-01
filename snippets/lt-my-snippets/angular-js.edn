@@ -1,0 +1,11 @@
+{:modes {:+ #{:editor.javascript}}
+ :snippets [
+            {:name "Routing function"
+             :key "route"
+             :snippet-file "angular/route.snip"
+             }
+            {:name "Angular foreach"
+             :key "ngeach"
+             :snippet-file "angular/each.snip"
+             }
+            ]}
